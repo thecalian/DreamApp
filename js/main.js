@@ -18,14 +18,22 @@ form.addEventListener('submit', async (e) => {
     }),
   });
 
+if(response.ok){
   const {img} = await response.json();
   console.log(response);
   console.log(img);
 
 
   const result = document.querySelector('#result');
-  hideSpinner();
   result.innerHTML = `<img src="${img}" width="512" />`;
+}
+else{
+  const err = await response.text();
+  alert(err);
+  console.log(err);
+}
+  
+  hideSpinner();
 });
 
 function showSpinner(){
